@@ -10,6 +10,8 @@
 
 ## 確認できたこと
 - `(tls.Config).InsecureSkipVerify = false`を設定する必要がある点を除けば、`HTTPS_PROXY`の環境変数をセットするだけで、プロキシを経由して接続をテストダブルに向けることができる
+    - Go 1.20からサポートされた、カバレッジ出力可能なテスト用バイナリを使いたいときに嬉しい（本番用と同じバイナリでのテストがやりやすい）
+    - https://future-architect.github.io/articles/20230203a/
 
 ## 実行結果
 
