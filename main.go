@@ -9,6 +9,7 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -84,12 +85,31 @@ func testS3(client *http.Client) {
 	if err != nil {
 		log.Panic(err)
 	}
-	resp, err := cli.ListBuckets(ctx, &s3.ListBucketsInput{})
+	_, err = cli.ListBuckets(ctx, &s3.ListBucketsInput{})
 	if err != nil {
 		log.Panic(err)
 	}
 
-	for _, b := range resp.Buckets {
-		log.Println(*b.Name)
+	_, err = cli.PutObject(ctx, &s3.PutObjectInput{
+		Bucket: aws.String("hey-0"),
+		Key:    aws.String("object1"),
+		Body:   strings.NewReader("value1"),
+	})
+	if err != nil {
+		log.Panic(err)
 	}
+
+	content, err := cli.GetObject(ctx, &s3.GetObjectInput{
+		Bucket: aws.String("hey-0"),
+		Key:    aws.String("object1"),
+	})
+	if err != nil {
+		log.Panic(err)
+	}
+	data, err := io.ReadAll(content.Body)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	log.Println(string(data))
 }
