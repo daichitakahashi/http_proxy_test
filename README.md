@@ -13,7 +13,7 @@
     - Go 1.20からサポートされた、カバレッジ出力可能なテスト用バイナリを使いたいときに嬉しい（テスト用の細工を最低限にすることで、本番用とテスト用で同じコードを使ったビルドがやりやすい）
     - https://future-architect.github.io/articles/20230203a/
 - `DoFunc`を複数仕掛ける場合、それぞれのハンドラーで`*http.Response`を返さないと意図通りに動かない
-- S3で`BUCKET_NAME.s3.REGION.amazonaws.com`というスタイルのリクエストが来た場合、`s3.REGION.amazonaws.com/BUCKET_NAME`のスタイルに変換してあげるとうまく動く
+- S3で`BUCKET_NAME.s3.REGION.amazonaws.com`というスタイルのリクエストが来た場合、`s3.REGION.amazonaws.com/BUCKET_NAME`のスタイルに変換してあげると`github.com/johannesboyne/gofakes3`がうまく動く
 
 ## 実行結果
 
